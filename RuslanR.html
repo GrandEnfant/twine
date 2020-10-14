@@ -179,8 +179,7 @@ max-height: 500px;
 ...Спотыкается и падает...
 &lt;&lt;timed 2s&gt;&gt;
 ...Обессиленная остаётся лежать и пытается отдышаться...
-&lt;&lt;/timed&gt;&gt;
-&lt;&lt;timed 4s&gt;&gt;
+&lt;&lt;next&gt;&gt;
 ...Сзади слышны шаги и детский смех...
 &lt;&lt;/timed&gt;&gt;
 [[Продолжeние]]</tw-passagedata><tw-passagedata pid="3" name="Начало" tags="" position="1848,895" size="100,100">&lt;&lt;audio &quot;fleshRush&quot; stop&gt;&gt;
@@ -196,7 +195,7 @@ max-height: 500px;
 &lt;&lt;timed 10s&gt;&gt;&lt;&lt;audio &quot;TV&quot; play goto &quot;Выключить телевизор&quot;&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
 [[Выключить телевизор]]===сначала звук выключения, а потом переход на другой экран===</tw-passagedata><tw-passagedata pid="4" name="Отправляемся" tags="штаб" position="1766,1224" size="100,100">
-&lt;&lt;if not hasVisited(&quot;Отправляемся&quot;)&gt;&gt;
+&lt;&lt;if visited(&quot;Отправляемся&quot;) lt 2&gt;&gt;
 &lt;При первом посещении&gt;
 Прилетев в Коттонвуд, штат Аризона - Сара заезжает на уже ожидающем её служебном внедорожнике в конспиративный дом. 
 &lt;img style=&quot;margin-left: 100px&quot; src=&quot;https://www.najciekawszeprojekty.pl/upload/images/2011/08/z203/640-mirror-index.jpg?1314987894&quot;/&gt;
@@ -207,19 +206,21 @@ max-height: 500px;
 Не став тратить время попусту, агент сразу отправляется для сбора информации.
 [[В морг]]
 
-&lt;&lt;elseif hasVisited(&quot;Отправляемся&quot;)&gt;&gt;
+&lt;&lt;else&gt;&gt;
 &lt;При следующих посещениях&gt;
 Светлый одноэтажный дом с чёрной крышей и затемнёнными окнами, имеется гараж, двумя диванами в большом зале, кухней и уборной с душем. Из удобств имеется телевизор и кондиционер, на стене зала имеется доска для записи информации.
 
 &lt;по мере прохождения, будут открываться новые локации к которым можно будет быстро переместиться и опции с которыми можно взаимодействовать&gt;
-[[Изучение улик]] появиться один раз, после осмотра трёх тел в морге
+&lt;&lt;if visited(&quot;Осмотреть первое тело&quot;, &quot;Осмотреть второе тело&quot;, &quot;Осмотреть третье тело&quot;) lt 2&gt;&gt;
+[[Изучение улик]] появится один раз, после осмотра трёх тел в морге
+&lt;&lt;endif&gt;&gt;
 [[В морг]]
 [[В участок]]
 [[В FFC|Отправиться на место преступления]]
 [[Каньон]]
 [[В старую школу|Старая школа]]
 
-&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="В морг" tags="" position="1571,1294" size="100,100">&lt;При первом посещении&gt;
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="В морг" tags="" position="1571,1294" size="100,100">&lt;&lt;if visited(&quot;В морг&quot;) lt 2&gt;&gt;
  *Сара подъезжает к небольшому одноэтажному зданию, с вывеской &quot;Местный морг&quot;. Зайдя внутрь, нас встречает администратор*
 А: Здравствуйте, приёмные часы у нас с 8 до 23, наш главный патологоанатом уже ушёл, приходите утром.
 Сара: *Показывая удостоверение*...Специальный агент FBI Сара Рейнольд, мне нужно осмотреть тела.
@@ -227,14 +228,16 @@ max-height: 500px;
 [[В участок]]
 
 
-
+&lt;&lt;else&gt;&gt;
 &lt;При следующих посещениях&gt;
  *Нас привествует администратор, которому шериф сказал всячески помогать нам*
 Администратор: Здравствуйте агент Рейнольд, могу я вам чем-то помочь?
 [[Проходим в морг|Проходим к телам]]
-[[В штаб|Отправляемся]]</tw-passagedata><tw-passagedata pid="6" name="Проходим к телам" tags="" position="1195,1170" size="100,100">&lt;&lt;cacheaudio &quot;fleshRush&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582723365_b4022802d369cb9.mp3&quot;&gt;&gt;
-&lt;&lt;audio &quot;fleshRush&quot; volume 0.6 play&gt;&gt;
+[[В штаб|Отправляемся]]
 
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Проходим к телам" tags="" position="1195,1170" size="100,100">&lt;&lt;cacheaudio &quot;fleshRush&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582723365_b4022802d369cb9.mp3&quot;&gt;&gt;
+&lt;&lt;audio &quot;fleshRush&quot; volume 0.6 play&gt;&gt;
+&lt;&lt;if visited(&quot;Переходим к телам&quot;) lt 2&gt;&gt;
 &lt;Первое посещение&gt;
 &lt;img src=&quot;https://st2.depositphotos.com/4556043/10530/i/950/depositphotos_105300810-stock-photo-3d-cg-rendering-of-morgue.jpg&quot;/&gt;
  *Три тела лежат на разных столах под простынями. Судя по запаху фольмардегида - их успели помыть и вскрыть. 
@@ -243,14 +246,18 @@ max-height: 500px;
 [[Осмотреть третье тело]]
 [[В штаб|Отправляемся]]
 
-
+&lt;&lt;else&gt;&gt;
 &lt;Последующие посещения&gt;
 &lt;img src=&quot;https://st2.depositphotos.com/4556043/10530/i/950/depositphotos_105300810-stock-photo-3d-cg-rendering-of-morgue.jpg&quot;/&gt;
 Большое прохладное помещение, в стенки которого встроены камеры для тел. В центре находятся несколько столов для вскрытие.
 [[Осмотреть первое тело]]
 [[Осмотреть второе тело]]
 [[Осмотреть третье тело]]
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;if visited(&quot;&quot;) gte 2&gt;&gt;
 [[Осмотреть четвёртое тело]] - пункт появляется после осмотра тела в ресторане и самоубийства Пога
+
+&lt;&lt;endif&gt;&gt;
 [[В штаб|Отправляемся]]</tw-passagedata><tw-passagedata pid="7" name="Выключить телевизор" tags="" position="1993,904" size="100,100">&lt;img src=&quot;http://slushano.ru/wp-content/uploads/2018/02/9UyQV5vhCVI.jpg&quot;/&gt;
 
 Сара Рейнольд: Боже, сколько больных ублюдков в этом городе, а ведь день только начался.
@@ -265,7 +272,7 @@ max-height: 500px;
 Сара: Очень приятно шериф Бутт, я Сара Рейнольд - буду вести это дело. Чтож, не будем тратить наше время, давате осмотрим тела.
 [[Отправиться в морг|Осмотреть первое тело]]</tw-passagedata><tw-passagedata pid="9" name="Осмотреть первое тело" tags="" position="1403,1268" size="100,100">&lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722870_7df309eb266c082.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme&quot; volume 0.3 play&gt;&gt;
-&lt;Первое посещение&gt;
+&lt;&lt;if visited(&quot;Осмотреть первое тело&quot;) lt 2&gt;&gt;
  
  *На столе лежит тело мужчины*
 
@@ -275,18 +282,22 @@ max-height: 500px;
 Сара: Да, у меня есть докторская степень по медицине, а теперь помогите мне его перевернуть.
 [[Перевернуть тело]]
 
-&lt;Последующие посещения&gt;
+&lt;&lt;else&gt;&gt;
 
  *Сара открывает одну из камер хранения и выкатывает из стены тело Винсента Колла.Тело успело окоченеть*
  Сара: Это тело - я уже осматривала.
- [[Здесь неначто больше смотреть|Проходим к телам]]
- 
+ [[Здесь не на что больше смотреть|Проходим к телам]]
+ &lt;&lt;endif&gt;&gt;
+ &lt;&lt;if visited(&quot;Осмотреть первое тело&quot;, &quot;Осмотреть второе тело&quot;, &quot;Осмотреть третье тело&quot;, &quot;Осмотреть четвертое тело&quot;) gte 2&gt;&gt;
 ===После осмотра всех трёх тел, если это последнее=== 
 Сара: В любом случае, тут мне больше делать ничего. Я возьму их дела и поеду к себе в штаб, если что-то будет нужно, я знаю где вас найти и появляется пункт перемещения в штаб
 Шериф: Всего доброго, агент Рейнольд. Я распоряжусь, чтобы вас пускали в морг, когда вам будет нужно.
 
+&lt;&lt;endif&gt;&gt;
+
 [[В штаб|Отправляемся]]</tw-passagedata><tw-passagedata pid="10" name="Осмотреть второе тело" tags="" position="1308,1437" size="100,100">&lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722870_7df309eb266c082.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme&quot; volume 0.3 play&gt;&gt;
+&lt;&lt;if visited(&quot;Осмотреть второе тело&quot;) lt 2&gt;&gt;
 &lt;Первое посещение&gt;
  *На столе лежит ещё один мужчина*
 Шериф: это Скот Макилрой 43лет. Рост 1метр 90см а, вес 100кг. Холост. Работал шофёром в такси. Угрюмый и любитель крепкого словца. Также множественные синяки и ссадины. Вырвана нижняя челюсь и левая нога. Причина смерти: потеря крови из-за вырванных конечностей.
@@ -295,33 +306,42 @@ max-height: 500px;
 Сара: Вижу тату &lt;img src=&quot;https://i.pinimg.com/originals/a1/5c/fd/a15cfd43de98a43fe469d788518e39e5.jpg&quot;/&gt; . Хорошо давайте перевернём тело.
 [[Перевернуть второе тело]]
 
-
+&lt;&lt;else&gt;&gt;
 &lt;Последующие посещения&gt;
  *Сара открывает одну из камер хранения и выкатывает из стены тело Скота Макилроя. Тело успело окоченеть.*
 Сара: Это тело - я уже осматривала.
-[[Здесь неначто больше смотреть|Проходим к телам]]
-
+[[Здесь не на что больше смотреть|Проходим к телам]]
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;if visited(&quot;Осмотреть первое тело&quot;, &quot;Осмотреть второе тело&quot;, &quot;Осмотреть третье тело&quot;) gte 2&gt;&gt;
 ===После осмотра всех трёх тел, если это последнее=== 
 Сара: В любом случае, тут мне больше делать ничего. Я возьму их дела и поеду к себе в штаб, если что-то будет нужно, я знаю где вас найти и появляется пункт перемещения в штаб
 Шериф: Всего доброго, агент Рейнольд. Я распоряжусь, чтобы вас пускали в морг, когда вам будет нужно.
-[[В штаб|Отправляемся]]</tw-passagedata><tw-passagedata pid="11" name="Осмотреть третье тело" tags="" position="1224,1563" size="100,100">&lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722870_7df309eb266c082.mp3&quot;&gt;&gt;
+[[В штаб|Отправляемся]]
+
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="Осмотреть третье тело" tags="" position="1224,1563" size="100,100">&lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722870_7df309eb266c082.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme&quot; volume 0.3 play&gt;&gt;
+
+&lt;&lt;if visited(&quot;Осмотреть третье тело&quot;) lt 2&gt;&gt;
 &lt;Первое посещение&gt;
  *На столе лежит тело женщины*
 Шериф: Последнее тело. Джессика Уоллес 40лет. Мужа нет, детей нет. Работала кассиром в местном гипермакете. Ходили слухи, что она подворовывала, но доказательств не было. Отсутствует мозг и правая рука.
 Сара: ...И как в первых двух случаях, отсутствуют какие-либо намёки как было совершено преступление. У Джессики есть тату на ключице в виде бабочек и небольшое тату 
 &lt;img src=&quot;https://i.pinimg.com/originals/8a/b6/d3/8ab6d312a81725dc3816209a8b94f830.jpg&quot;/&gt; между пальцами, которое уже протёрлось.
 [[Перевернуть третье тело]]
-
+&lt;&lt;else&gt;&gt;
 &lt;Последующие посещения&gt;
  *Сара открывает одну из камер хранения и выкатывает из стены тело Джессики Уоллес. Тело успело окоченеть*
 Сара: Это тело - я уже осматривала.
-[[Здесь неначто больше смотреть|Проходим к телам]]
+[[Здесь не на что больше смотреть|Проходим к телам]]
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;if visited(&quot;Осмотреть первое тело&quot;, &quot;Осмотреть второе тело&quot;, &quot;Осмотреть третье тело&quot;) gte 2&gt;&gt;
 ===После осмотра всех трёх тел, если это последнее=== 
 Сара: В любом случае, тут мне больше делать ничего. Я возьму их дела и поеду к себе в штаб, если что-то будет нужно, я знаю где вас найти и появляется пункт перемещения в штаб
 Шериф: Всего доброго, агент Рейнольд. Я распоряжусь, чтобы вас пускали в морг, когда вам будет нужно.
 
-[[В штаб|Отправляемся]]</tw-passagedata><tw-passagedata pid="12" name="Перевернуть тело" tags="" position="1033,1314" size="100,100">&lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722870_7df309eb266c082.mp3&quot;&gt;&gt;
+[[В штаб|Отправляемся]]
+
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="Перевернуть тело" tags="" position="1033,1314" size="100,100">&lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722870_7df309eb266c082.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme&quot; volume 0.3 play&gt;&gt;
 Перевернув тело, Сара обнаружила на плече небольшое тату, которую почти вывели: 
 &lt;img src=&quot;https://i.pinimg.com/originals/c8/b9/3e/c8b93eb0594c492e00b22d47acca4275.jpg&quot;/&gt;
@@ -347,7 +367,7 @@ max-height: 500px;
 &lt;&lt;audio &quot;darkmusic&quot; stop&gt;&gt;
 
 &lt;Первое посещение&gt;
-&lt;&lt;if not hasVisited(&quot;Отправиться на место преступления&quot;)&gt;&gt;
+&lt;&lt;if visited(&quot;Отправиться на место преступления&quot;) lt 2&gt;&gt;
 &lt;img style=&quot;margin-left: 100px&quot; src=&quot;https://slon.fr/wp-content/uploads/2017/01/quick-france-fast-food-720.0.jpg&quot;/&gt;
 
 &lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2019-10/1572331555_458b1a3618ab14b.mp3&quot;&gt;&gt;
@@ -356,7 +376,7 @@ max-height: 500px;
 Сара: надеюсь мы сюда не завтракать приехали?
 Шериф: Пройдём во внутрь...
 [[Пройти]]
-&lt;&lt;elseif hasVisited(&quot;Отправиться на место преступления&quot;)&gt;&gt;
+&lt;&lt;else&gt;&gt;
 &lt;img style=&quot;margin-left: 100px&quot; src=&quot;https://arc-anglerfish-arc2-prod-advancelocal.s3.amazonaws.com/public/TDBKIRTQWZAL3H6GJKZZWQEZHA.jpg&quot;/&gt;
 &lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2019-10/1572331555_458b1a3618ab14b.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme&quot; volume 1 fadeoverto 25 0&gt;&gt;
@@ -373,18 +393,18 @@ max-height: 500px;
 Шериф: Сара, у нас ещё один случай. Подъезжайте к ресторану FFC на Хилберд стрит, я вас встречу.
 Сара: Хорошо, до встречи. 
 Сара: Пожалуй, возьму свой медицинский чемоданчик.
-[[Отправиться на место преступления]]</tw-passagedata><tw-passagedata pid="17" name="Пройти" tags="" position="2276,1158" size="100,100">&lt;&lt;if not hasVisited(&quot;Пройти&quot;)&gt;&gt;
+[[Отправиться на место преступления]]</tw-passagedata><tw-passagedata pid="17" name="Пройти" tags="" position="2276,1158" size="100,100">&lt;&lt;if visited(&quot;Пройти&quot;) lt 2&gt;&gt;
 &lt;Первое посещение в рамках ресторана&gt;
 Шериф и Сара проходят на кухню. Если у кого-то и было желание позавтракать, то они быстро исчезло.
 &lt;&lt;timed 4s&gt;&gt;
 &lt;img style=&quot;margin-left: 100px&quot; src=&quot;https://nightmarish-dream.ru/sh4/images/screens/sh4_screen_02.jpg&quot;/&gt;
-&lt;&lt;/timed&gt;&gt;
+
  *Кухня походила на кровавую баню, везде были разбросаны различные фрагменты человека*
 Шериф: Джо Флетчер, 44года, холост, работал помощником менеджера в этом заведении. Его мало кто любил за хамское отношение к персоналу и клиентам, порой выписал прямо на работе. Был опознан по...голове в кастрюле, других жертв нету.
 [[Пройти к наиболее большим фрагментам жертвы]]
 [[выйти на улицу|Отправиться на место преступления]]
-&lt;/if&gt;
-&lt;&lt;elseif hasVisited(&quot;Пройти&quot;)&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+&lt;&lt;else&gt;&gt;
 &lt;Последующие посещения&gt;
 &lt;img style=&quot;margin-left: 100px&quot; src=&quot;https://nightmarish-dream.ru/sh4/images/screens/sh4_screen_02.jpg&quot;/&gt;
 &lt;&lt;cacheaudio &quot;theme2&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568956835_7b809fb1bc83164.mp3&quot;&gt;&gt;
@@ -394,11 +414,11 @@ max-height: 500px;
 [[выйти на улицу|Отправиться на место преступления]]
 
 &lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="Пройти к наиболее большим фрагментам жертвы" tags="" position="2122,980" size="100,100">
- *Сара одевает перчатки чтобы осмотреть фрагменты и присаживает на корточки*
+ *Сара надевает перчатки чтобы осмотреть фрагменты и присаживает на корточки*
 &lt;img style=&quot;margin-left:100px&quot; src=&quot;https://ak.picdn.net/shutterstock/videos/1007261719/thumb/1.jpg&quot;/&gt;
 [[Осмотреть]]
 [[Сфотографировать]]
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+
 [[Отойти|Пройти]]</tw-passagedata><tw-passagedata pid="19" name="Осмотреть" tags="" position="2568,949" size="100,100">&lt;&lt;audio &quot;darkmusic&quot; stop&gt;&gt;
 &lt;&lt;cacheaudio &quot;darkmusic2&quot; &quot;https://zvukipro.com/uploads/files/2019-05/1559022965_8994a51afcdaa0f.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;darkmusic2&quot; volume 2 play&gt;&gt;
@@ -415,13 +435,17 @@ max-height: 500px;
 [[Выйти на улицу|Отправиться на место преступления]]
 [[Осмотреть]]</tw-passagedata><tw-passagedata pid="21" name="Осмотреть кухню" tags="" position="2424,1193" size="100,100"> *В надежде найти то, что могли пропустить - Сара начинает более старательно исследовать кухню...*
 [[Тщательный Поиск]]
-[[Вернуться|Пройти]]</tw-passagedata><tw-passagedata pid="22" name="Тщательный Поиск" tags="" position="2590,1192" size="100,100">===Анимация прогресса осмотра в это время постоянно играет фоновая музыка===
-&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582721803_9563e7b8c8455a1.mp3&quot;&gt;&gt;
+[[Вернуться|Пройти]]</tw-passagedata><tw-passagedata pid="22" name="Тщательный Поиск" tags="" position="2590,1192" size="100,100">&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582721803_9563e7b8c8455a1.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme3&quot; volume 1 play&gt;&gt;
-и на 90% находка:
+===Анимация прогресса осмотра в это время постоянно играет фоновая музыка===
+&lt;&lt;timed 2s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+==и на 90% находка:==
+&lt;&lt;next&gt;&gt;
  *Отодвинув один из холодильников, Сара обнаруживаете странную плитку в виде мозайки, которую можно передвигать. Сквозь щели в плитке, агент замечает что-то.*
 [[Начать двигать]]
-</tw-passagedata><tw-passagedata pid="23" name="Пройти к шерифу" tags="" position="1496,900" size="100,100">&lt;Первое посещение&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="Пройти к шерифу" tags="" position="1496,900" size="100,100">&lt;&lt;if visited(&quot;Пройти к шерифу&quot;) lt 2&gt;&gt;
+&lt;Первое посещение&gt;
+
 &lt;img src=&quot;https://nationmagazine.ru/upload/medialibrary/891/8916f36e80b936c1872c586f1bb8a452.jpg&quot;/&gt;
 
 Сара: Шериф Бутт, я отправила вам отпечатки с ножа, где нашли Джо Флетчера. Чутьё мне подсказывает, что это убийство другое.
@@ -429,27 +453,32 @@ max-height: 500px;
 Сара: Чтож, давайте побеседуем с ним.
 Шериф: Поехали.
 [[Отправиться к Френсису]]
-
+&lt;&lt;else&gt;&gt;
 &lt;Последующие посещения&gt;
 &lt;img src=&quot;https://nationmagazine.ru/upload/medialibrary/891/8916f36e80b936c1872c586f1bb8a452.jpg&quot;/&gt;
  *Войдя в кабинет шерифа, сразу бросаются в глаза его охотничьи трофеи: головы убитых животных, фотографии с охоты и пару чучел медведей. Сам Шериф Бутт, сидел  в это время в своём кожанном кресле и работал с отчётами своих подчинённых. При виде агента Рейнольд, он поднял голову*
+ &lt;&lt;endif&gt;&gt;
+ &lt;&lt;if visited(&quot;Осмотр четвертого тела&quot;) gte 2&gt;&gt;
 [[Разговор насчёт четвёртой жертвы]] &lt;Вариант должен появляться после осмотра четвёртого тела в ресторане и заключения Сары&gt;
-
-[[В штаб|Отправляемся]]</tw-passagedata><tw-passagedata pid="24" name="В участок" tags="" position="1660,1059" size="100,100">&lt;При первом посещении&gt;
+&lt;&lt;endif&gt;&gt;
+[[В штаб|Отправляемся]]
+</tw-passagedata><tw-passagedata pid="24" name="В участок" tags="" position="1660,1059" size="100,100">&lt;&lt;if visited(&quot;В участок&quot;) lt 2&gt;&gt;
 &lt;img src=&quot;http://www.openarium.ru/%D1%84%D0%BE%D1%82%D0%BE/%D1%81%D1%88%D0%B0/%D0%BB%D0%BE%D1%81-%D0%B0%D0%BD%D0%B4%D0%B6%D0%B5%D0%BB%D0%B5%D1%81/%D0%BF%D0%BE%D0%BB%D0%B8%D1%86%D0%B5%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%BE%D0%BA-%D1%85%D0%B0%D0%B9%D0%BB%D0%B5%D0%BD%D0%B4-%D0%BF%D0%B0%D1%80%D0%BA.jpg&quot;/&gt;
 
 Полицейское здание располагалось в центре города. Большое, двухэтажное здание с каждой стороны которого располагалась табличка:&quot;Полицейский департамент Коттонвуда, служить и защищать&quot;.
 При подъезде к участку, Сару встречает незнаконец.
 [[продолжение]]
-
-&lt;При следующих посещениях&gt;
+&lt;&lt;else&gt;&gt;
 &lt;img src=&quot;http://www.openarium.ru/%D1%84%D0%BE%D1%82%D0%BE/%D1%81%D1%88%D0%B0/%D0%BB%D0%BE%D1%81-%D0%B0%D0%BD%D0%B4%D0%B6%D0%B5%D0%BB%D0%B5%D1%81/%D0%BF%D0%BE%D0%BB%D0%B8%D1%86%D0%B5%D0%B9%D1%81%D0%BA%D0%B8%D0%B9-%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%BE%D0%BA-%D1%85%D0%B0%D0%B9%D0%BB%D0%B5%D0%BD%D0%B4-%D0%BF%D0%B0%D1%80%D0%BA.jpg&quot;/&gt;
 
 Полицейское здание располагалось в центре города. Большое, двухэтажное здание с каждой стороны которого располагалась табличка:&quot;Полицейский департамент Коттонвуда, служить и защищать&quot;.
 [[Пройти к шерифу]]
 [[Вы замечаете небольшую толпу около участка]] - пункт появляется когда шериф просит помощника найти всех одноклассников с фотографии.
-[[В штаб|Отправляемся]]</tw-passagedata><tw-passagedata pid="25" name="Отправиться к Френсису" tags="" position="1360,1019" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575542655_f5bf3f1fa02be02.mp3&quot;&gt;&gt;
+[[В штаб|Отправляемся]]
+
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="Отправиться к Френсису" tags="" position="1360,1019" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575542655_f5bf3f1fa02be02.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme4&quot; volume 1 play&gt;&gt;
+&lt;&lt;if visited(&quot;Отправиться к Френсису&quot;) lt 2&gt;&gt;
 &lt;Первое посещение&gt;
 Френсис жил рядом с каньоном на окраине города, в своём трейлере.  
 &lt;img src=&quot;https://lastfm.freetls.fastly.net/i/u/ar0/bd8a82aeb47a47cac78143cd46c17047.png&quot;/&gt;
@@ -460,45 +489,52 @@ max-height: 500px;
 Сара: Френсис переходит в разряд возможных подозреваемых, поэтому церемониться нельзя. 
  *Сара берёт отмычку и пытается взломать замок*
 [[Начать взлом]]
-
+&lt;&lt;else&gt;&gt;
 &lt;Следующие посещения&gt;
 &lt;img src=&quot;https://lastfm.freetls.fastly.net/i/u/ar0/bd8a82aeb47a47cac78143cd46c17047.png&quot;/&gt;
 Почему полиция не может отбуксировать его трейлер ближе в город? 
 Тем не менее трейлер Френсиса Пога стоял на своём прежнем месте и был опечатан.
 [[Зайти в трейлер]]
 [[В штаб|Отправляемся]]
-[[По следам Френсиса|Каньон]]</tw-passagedata><tw-passagedata pid="26" name="Зайти в трейлер" tags="" position="1190,972" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575542124_f2758e2b277d486.mp3&quot;&gt;&gt;
+[[По следам Френсиса|Каньон]]
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="Зайти в трейлер" tags="" position="1190,972" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575542124_f2758e2b277d486.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme4&quot; volume 1 play&gt;&gt;
+&lt;&lt;if visited(&quot;Зайти в трейлер&quot;) lt 2&gt;&gt;
  *В трейлере было на удивление чисто и убрано*
 
 &lt;img src=&quot;https://avatars.mds.yandex.net/get-pdb/214908/080b2324-2306-4676-b166-659f754632c5/s1200?webp=false&quot;/&gt;
 
 [[Осмотреть трейлер]]
 [[Выйти на улицу|Отправиться к Френсису]]
-
+&lt;&lt;else&gt;&gt;
 &lt;последующие посещения&gt;
 &lt;img src=&quot;https://avatars.mds.yandex.net/get-pdb/214908/080b2324-2306-4676-b166-659f754632c5/s1200?webp=false&quot;/&gt;
  *В трейлере было на удивление чисто и убрано*
  
  [[Выйти на улицу|Отправиться к Френсису]]
- </tw-passagedata><tw-passagedata pid="27" name="Осмотреть трейлер" tags="" position="1176,854" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575542570_f53d60999306760.mp3&quot;&gt;&gt;
+ &lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="Осмотреть трейлер" tags="" position="1176,854" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575542570_f53d60999306760.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme4&quot; volume 1 play&gt;&gt;
- ===Прогресс-бар осмотра трейлера===
- ===По окончании осмотра. Выдаёт сообщение===
+&lt;&lt;timed 1s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+&lt;&lt;next&gt;&gt;
  *В ходе осмотра была обнаружена порванная записка, а также множество бухгалтерской документации*
 Сара: Похоже Пог тщательно следил за бухгалтерией ресторана и судя по счетам, понял что Флетчер приворовывал из кассы.
 Шериф: Мотив на лицо. Похоже можно подавать Френсиса в розыск.
 [[склеить записку]]
-[[Выйти на улицу|Отправиться к Френсису]]</tw-passagedata><tw-passagedata pid="28" name="склеить записку" tags="" position="1033,959" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575541929_20f52df178205f2.mp3&quot;&gt;&gt;
+[[Выйти на улицу|Отправиться к Френсису]]
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="склеить записку" tags="" position="1033,959" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575541929_20f52df178205f2.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme4&quot; volume 1 play&gt;&gt;
-===Прогресс бар восстановления записки. По завершению, получаем сообщение===
+&lt;&lt;timed 1s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+&lt;&lt;next&gt;&gt;
  *Предсмертная записка восстановлена*
-&lt;&lt;timed 2s&gt;&gt;
+&lt;&lt;next&gt;&gt;
 &quot;Я - Френсис Пог, обнаружил, что Флетчер обворовывал заведение и в припадке ярости - убил его. Пытаясь подстроить всё под недавние череды смертей, перемолол части Флетчера в мясорубке заведения и разбрасал останки, голову отрезал кухонным ножом, который спрятал там же под холодильником. Больше не могу выносить всей тяжести содеянного, моё тело вы найдёте на дне коньона, рядом с моим трейлером.&quot;
-&lt;&lt;/timed&gt;&gt;
+
 Сара: Похоже на прощальную записку Пога. Нужно быстрее добраться до каньона, может мы сумеем его перехватить.
 Шериф: Тут есть небольшая тропа от трейлера, потопимся.
-[[Каньон]]</tw-passagedata><tw-passagedata pid="29" name="Каньон" tags="" position="971,1099" size="100,100">&lt;Первое посещение&gt;
+[[Каньон]]
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="Каньон" tags="" position="971,1099" size="100,100">&lt;&lt;if visited(&quot;Каньон&quot;) lt 2&gt;&gt;
+
+&lt;Первое посещение&gt;
  *Подбегая к каньону Сара и Шериф услышали крик...*
 &lt;&lt;timed 2s&gt;&gt;
 &lt;&lt;cacheaudio &quot;falling&quot; &quot;https://zvukipro.com/uploads/files/2017-09/1504525203_krik_padajuschego_s_vysoty.mp3&quot;&gt;&gt;
@@ -510,14 +546,15 @@ max-height: 500px;
 Сара: Шериф, вызыйте своих ребят. Пусть тело отправят Доку на вкрытие, хотя и так понятна причина смерти. А мне нужно расследовать другие смерти.
 Шериф:как скажите Рейнольд, вы знаете где меня найти.
 [[В штаб|Отправляемся]]
-
+&lt;&lt;else&gt;&gt;
 &lt;последующие посещения&gt;
 &lt;img src=&quot;https://static.tildacdn.com/tild3061-3236-4865-b534-313136656436/1_1.jpg&quot;/&gt;
 
  *Каньон представлял собой 80-метровый обрыв. Здесь открывается отличный вид на долину и для этого оборудовали смотровое место. Ночью прекрасно видно звёздное небо*
 
 [[В штаб|Отправляемся]]
-[[Добраться до трейлера Пога|Отправиться к Френсису]]</tw-passagedata><tw-passagedata pid="30" name="Осмотреть четвёртое тело" tags="" position="1467,1551" size="100,100">&lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722870_7df309eb266c082.mp3&quot;&gt;&gt;
+[[Добраться до трейлера Пога|Отправиться к Френсису]]
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="Осмотреть четвёртое тело" tags="" position="1467,1551" size="100,100">&lt;&lt;cacheaudio &quot;theme&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722870_7df309eb266c082.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme&quot; volume 0.3 play&gt;&gt;
 &lt;Первое посещение&gt;
  *Тело недавно прибывшего Джо Флетчера, хоть и было помыто, но отсутствовало много мелких фрагментов скелета. В глаза бросался отделённая часть торса и татуировки на нём*
@@ -526,19 +563,23 @@ max-height: 500px;
 </tw-passagedata><tw-passagedata pid="31" name="Разговор насчёт четвёртой жертвы" tags="" position="1708,919" size="100,100">Сара: Шериф Бутт. У меня есть догадга...У всех жертв были похожие татуировки, можно проверить по вашим архивам уголовников это изображение...может найдутся совпадения.
 Шериф: Да конечно.
 [[Начать поиск по базе]]</tw-passagedata><tw-passagedata pid="32" name="Начать поиск по базе" tags="" position="1688,790" size="100,100">
-&lt;Прогресс бар типа поиск по базе&gt;после завершения, появляется сообщение:
+&lt;&lt;timed 1s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+&lt;&lt;next&gt;&gt;
  *Совпадение:*
 &lt;img src=&quot;https://i.pinimg.com/originals/74/45/74/74457437ce96042be8e8e7d5415d524d.jpg &quot;/&gt;
 
 Шериф: 25 лет назад эта банда совершала мелкие хулиганства. В основном состояла из несовершеннолетних. У каждого их члена была наколка с частью их общей символики. Чем более полная тату, тем выше авторитет - что-то типа иерархии. Их главаря мы схватили лет 8 назад, выглядел он паршиво - наркоман как никак и сдох, уже через неделю в камере. Остальные как-то залегли на дно и до сих пор мы о них не слышали.
-[[Продолжить]]</tw-passagedata><tw-passagedata pid="33" name="Использовать ключ шерифа и пройти внутрь" tags="" position="1290,745" size="100,100">&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-05/1559316755_0e515af90bfbfda.mp3&quot;&gt;&gt;
+[[Продолжить]]
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="Использовать ключ шерифа и пройти внутрь" tags="" position="1290,745" size="100,100">&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-05/1559316755_0e515af90bfbfda.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme3&quot; volume 1 play&gt;&gt;
 &lt;&lt;timed 3s&gt;&gt;
  *Сразу запахло сыростью и плесенью*
 &lt;&lt;next&gt;&gt;
 Сара: Попробуем поискать следы.
 &lt;&lt;/timed&gt;&gt;
-[[Обыскать]]</tw-passagedata><tw-passagedata pid="34" name="Марджи Маф" tags="" position="1105,530" size="100,100">&lt;Первое посещение&gt;
+[[Обыскать]]</tw-passagedata><tw-passagedata pid="34" name="Марджи Маф" tags="" position="1105,530" size="100,100">&lt;&lt;if visited(&quot;Марджи Маф&quot;) lt 2&gt;&gt;
+&lt;Первое посещение&gt;
+
 &lt;img src=&quot;https://i.pinimg.com/originals/4f/11/1b/4f111bcdc8858934fa035856b9582a91.jpg&quot;/&gt;
 
  *Сара Рейнольд подходит к дому и стучит в дверь*
@@ -547,7 +588,7 @@ max-height: 500px;
  *слышны звуки подходящих шагов, что-то щёлкает и дверь открывается*
 &lt;&lt;timed 2s&gt;&gt;
  *В дверях показалась седая женщина с бусами в виде зубов на шее, одетая в странный наряд из шкур животных и с окровавленными руками*
-&lt;&lt;/timed&gt;&gt;
+
 Марджи*кричит*: ВЫ ПРИШЛИ ОТОБРАТЬ МОЮ ДОЧЬ? ОНА ВСЕХ НАЙДЁТ!!! ВСЕХ!!!
 Сара: У меня есть пару вопросов по поводу недавших убийств, можем мы обсудить их внутри дома?
 Марджи*кричит*: СКОРО! СОВСЕМ СКОРО! ВСЕ ПОПЛАТЯТСЯ!!! хахахаха...
@@ -555,26 +596,33 @@ max-height: 500px;
 Сара: Похоже придётся осмотреть дом, когда в нём никого не будет.
 
 [[В штаб|Отправляемся]]
-[[Отправиться следить за домом Марджи Маф]]</tw-passagedata><tw-passagedata pid="35" name="Войти в дом Маф" tags="" position="1052,810" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568957448_cb0e49d47834e5c.mp3&quot;&gt;&gt;
+[[Отправиться следить за домом Марджи Маф]]
+&lt;&lt;/timed&gt;&gt;
+&lt;&lt;endif&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="Войти в дом Маф" tags="" position="1052,810" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568957448_cb0e49d47834e5c.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme9&quot; volume 1 play&gt;&gt;
  *На кухне, Сара замечает различные аккультные знаки*
 &lt;&lt;timed 3s&gt;&gt;
 &lt;img src=&quot;https://picon.ngfiles.com/662000/flash_662083_largest_crop.jpg?f1439616562&quot;/&gt;
 &lt;img src=&quot;https://i.ytimg.com/vi/UigFMNXcXw8/maxresdefault.jpg&quot;/&gt;
 
-&lt;&lt;/timed&gt;&gt;
+
 
 [[Осмотреть первый этаж]]
 [[Осмотреть второй этаж]]
+&lt;&lt;if visited(&quot;Зайти в первую комнату&quot;, &quot;Осмотреть вторую комнату&quot;, &quot;Поговорить с шерифом&quot;)&gt;&gt;
 [[Устроить засаду]] - пункт появляется после осмотра обеих комнат и разговора с шерифом для засады
 [[К шерифу|Пройти к шерифу]] - пункт появляется после осмотра обеих комнат и разговора с шерифом для засады
-[[В штаб|Отправляемся]] - пункт появляется после осмотра обеих комнат и разговора с шерифом для засады</tw-passagedata><tw-passagedata pid="36" name="Отправиться следить за домом Марджи Маф" tags="" position="905,963" size="100,100"> &lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575192482_d2ed2f130a51b71.mp3&quot;&gt;&gt;
+[[В штаб|Отправляемся]] - пункт появляется после осмотра обеих комнат и разговора с шерифом для засады
+&lt;&lt;endif&gt;&gt;
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="Отправиться следить за домом Марджи Маф" tags="" position="905,963" size="100,100"> &lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575192482_d2ed2f130a51b71.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme3&quot; volume 1 play&gt;&gt;
  *Сара устраивает слежку за домом Маф*
- 
+ &lt;&lt;timed 1s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
 ===Прогресс бар таймера слежки в виде часов, время идёт с 0 до 23.59 Когда часы стали показывать 14.40 появится сообщение===
+&lt;&lt;next&gt;&gt;
 Сара: Отлично, наконец Марджи покинула дом. Открыто окно на первом этаже - вот и дверь для меня.
-[[Пробраться в дом|Войти в дом Маф]]</tw-passagedata><tw-passagedata pid="37" name="Посмотреть подробнее ритуал" tags="" position="649,1358" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568961745_4cb6e10095896f4.mp3&quot;&gt;&gt;
+[[Пробраться в дом|Войти в дом Маф]]
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="Посмотреть подробнее ритуал" tags="" position="649,1358" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568961745_4cb6e10095896f4.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme9&quot; volume 1 play&gt;&gt;
  *&quot;...Мощный ритуал берёт начало ещё из древне-ацтекских поверий. Необходимо  проводить в максимально энергетически подходящий момент(солнечные вспышки, сатанинский день, день солнцестояния и тд)...&quot;*
 Сара: Далее идёт непонятный список каких-то компонентов и знаков...
@@ -595,7 +643,7 @@ max-height: 500px;
  *&quot;...которые необходимо расположить в четырёх направлениях сторон света&quot;*
 [[назад|Посмотреть подробнее ритуал]]</tw-passagedata><tw-passagedata pid="40" name="амулет" tags="" position="604,1496" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568961745_4cb6e10095896f4.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme9&quot; volume 1 play&gt;&gt;
- *Не при каких обстроятельствах, не используйте волосы и кости духа - для создания амулетов защиты, это имеет обратный эффект и способствует вселению духа!!!*
+ *Ни при каких обстроятельствах, не используйте волосы и кости духа - для создания амулетов защиты, это имеет обратный эффект и способствует вселению духа!!!*
 [[назад|Дочитать полностью]]</tw-passagedata><tw-passagedata pid="41" name="Осмотреть первый этаж" tags="" position="631,847" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568957448_cb0e49d47834e5c.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme9&quot; volume 1 play&gt;&gt;
  *Весь первый этаж устилан шкурами животных. Стены изрисованны непонятными символами, кое где висят отбеленные черепа животных в виде подсвечников.
@@ -605,8 +653,8 @@ max-height: 500px;
 &lt;&lt;audio &quot;theme9&quot; volume 1 play&gt;&gt;
  *Коридор второго этажа был устилан каким-то мехом. Границы коридора были обозначены двумя окнами. На этом этаже располагалось две комнаты*
 [[Зайти в первую комнату]]
-[[Осмотреть вторую комнату комнату]]
-[[Вернуться на кухню|Войти в дом Маф]] - пункт появляется после создания нами защитного амулета и найдённых амулетов контроля духа.</tw-passagedata><tw-passagedata pid="43" name="Осмотреть вторую комнату комнату" tags="" position="713,1228" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568961366_5584e96da8458aa.mp3&quot;&gt;&gt;
+[[Осмотреть вторую комнату]]
+[[Вернуться на кухню|Войти в дом Маф]] - пункт появляется после создания нами защитного амулета и найдённых амулетов контроля духа.</tw-passagedata><tw-passagedata pid="43" name="Осмотреть вторую комнату" tags="" position="713,1228" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568961366_5584e96da8458aa.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme9&quot; volume 1 play&gt;&gt;
 Дойдя до второй комнаты, Сара замечает у окна кровать, на которой расположено большое количество кукол без лица и плюшевых игрушек. Пройдя внутрь, Рейнольд видит различные фотографии маленькой девочки одной и с матерью. У стены стоит небольшой письменный стол, на котором лежат уже пожелтевшие тетради.
 Сара: Как-будто комната ждёт возвращения девочки.
@@ -625,26 +673,40 @@ max-height: 500px;
 &lt;Набор разноцветных заколок для волос&gt;
 &lt;Детская косметичка&gt;
 
-[[назад|Осмотреть вторую комнату комнату]]</tw-passagedata><tw-passagedata pid="46" name="Начать двигать" tags="" position="2656,1070" size="100,100">===Прогресс бар собирания плиток в единое изображение + постоянно играет фоновая музыка=== 
+[[назад|Осмотреть вторую комнату]]</tw-passagedata><tw-passagedata pid="46" name="Начать двигать" tags="" position="2656,1070" size="100,100">===Прогресс бар собирания плиток в единое изображение + постоянно играет фоновая музыка=== 
+
+
 &lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722053_a1391d7a316edca.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme4&quot; volume 1 play&gt;&gt;
-По окончанию, появляется сообщение: *Сара слышит щелчок*
+&lt;&lt;timed 2s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+
+&lt;&lt;next&gt;&gt;  *Сара слышит щелчок*
 Сара: Попробую приподнять плитки.
  *Саре с трудом удаётся их поднять. Под ними лежит окровавленный нож с длинным лезвием*
 &lt;img src=&quot;https://im0-tub-ru.yandex.net/i?id=513b1b8a47a59cdbc99872f727880c8d&amp;n=13&quot;/&gt;
 Сара: Это похоже на оружие преступления, надо быстрее снять отпечатки. Хорошо, что в этот раз, я взяла сканер для снятия отпечатков.
-[[Снять отпечатки]]</tw-passagedata><tw-passagedata pid="47" name="Снять отпечатки" tags="" position="2735,948" size="100,100">&lt;img src=&quot;http://nrnews.ru/uploads/posts/2016-11/1479990012_4383950.jpg&quot;/&gt;
+[[Снять отпечатки]]
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="Снять отпечатки" tags="" position="2735,948" size="100,100">&lt;img src=&quot;http://nrnews.ru/uploads/posts/2016-11/1479990012_4383950.jpg&quot;/&gt;
+
+
 ===Прогресс бар снятия отпечатков + играет фоновая музыка=== 
 &lt;&lt;cacheaudio &quot;theme5&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582723132_e9aeba61ce3d7d4.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme5&quot; volume 1 play&gt;&gt;
-по окончанию прогресса - получаем сообщение: *Готово*
+&lt;&lt;timed 2s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+&lt;&lt;next&gt;&gt; *Готово*
 Сара: Отлично, отпечатки удалось снять. Нужно быстрее передать их шерифу, пусть проверит по своей базе.
-[[Отправить шерифу]]</tw-passagedata><tw-passagedata pid="48" name="Отправить шерифу" tags="" position="2788,829" size="100,100"> *Быстрый прогресс бар пересылки файла* по завершению прогресс бара звучит сигнал:
+[[Отправить шерифу]]
+
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="Отправить шерифу" tags="" position="2788,829" size="100,100">
+ &lt;&lt;timed 0.5s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+ &lt;&lt;next&gt;&gt;
 &lt;&lt;cacheaudio &quot;theme6&quot; &quot;https://zvukipro.com/uploads/files/2019-07/1563255508_6d54d06d4eb2908.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme6&quot; volume 1 play&gt;&gt;
-и получаем сообщение: *файл успешно отправлен*
+ *файл успешно отправлен*
 Сара: Тут закончили, пора встретиться с шерифом.
-[[Отправиться к шерифу|Пройти к шерифу]]</tw-passagedata><tw-passagedata pid="49" name="Продолжить" tags="" position="1568,772" size="100,100">&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-07/1562568970_f1f1ea73760a42f.mp3&quot;&gt;&gt;
+[[Отправиться к шерифу|Пройти к шерифу]]
+
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="Продолжить" tags="" position="1568,772" size="100,100">&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-07/1562568970_f1f1ea73760a42f.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme3&quot; volume 1 play&gt;&gt;
 
 Сара: А вас есть данные по всем участникам банды?
@@ -652,9 +714,12 @@ max-height: 500px;
 
 [[Старая школа]]</tw-passagedata><tw-passagedata pid="50" name="Начать взлом" tags="" position="1333,902" size="100,100">&lt;&lt;cacheaudio &quot;theme4&quot; &quot;https://zvukipro.com/uploads/files/2019-12/1575541929_20f52df178205f2.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme4&quot; volume 1 play&gt;&gt;
-===мини игра взлома замка трейлера===
-после удачного взлома сообщение &quot;получилось&quot; и появляется кнопка &quot;Зайти в трейлер&quot;
-[[Зайти в трейлер]]</tw-passagedata><tw-passagedata pid="51" name="Осмотреть другие тела в морге" tags="" position="1604,1552" size="100,100">&lt;&lt;cacheaudio &quot;theme5&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582723132_e9aeba61ce3d7d4.mp3&quot;&gt;&gt;
+&lt;&lt;timed 1s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+&lt;&lt;next&gt;&gt;
+Сара: Получилось
+[[Зайти в трейлер]]
+
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="Осмотреть другие тела в морге" tags="" position="1604,1552" size="100,100">&lt;&lt;cacheaudio &quot;theme5&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582723132_e9aeba61ce3d7d4.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme5&quot; volume 1 play&gt;&gt;
 ...После осмотра предыдущих жертв...
 Сара: ...Как я сразу это не заметила, у них похожие татуировки.
@@ -709,14 +774,15 @@ max-height: 500px;
 Сара*вспоминая*:Где-то я уже видела эту фотографию...
 &lt;&lt;timed 2s&gt;&gt;
 Сара:Фотография похожа на ту, которую я нашла в архивах, но на обратной стороне подписаны все участники фото.
-&lt;&lt;/timed&gt;&gt;
+
 Сара: Слишком много вопросов к вам - миссис Маф. 
  *Сара набирает номер шерифа*
 Сара: Алло, шериф Бутт?
 Шериф: Да, что случилось?
 Сара: Похоже я нашла след, нужна группа захвата. Приезжайте к дому Марджи Маф, только со стороны леса, чтобы вас не заметили.
 Шериф: Скоро будем.
-[[Вернуться|Осмотреть первый этаж]]</tw-passagedata><tw-passagedata pid="59" name="Пройти в участок" tags="" position="2222,1299" size="100,100"> &lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722877_32e6b13ee9dda0f.mp3&quot;&gt;&gt;
+[[Вернуться|Осмотреть первый этаж]]
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="Пройти в участок" tags="" position="2222,1299" size="100,100"> &lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2020-02/1582722877_32e6b13ee9dda0f.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme3&quot; volume 1 play&gt;&gt;
  &lt;img style=&quot;margin-left: 100px&quot; src=&quot;https://avatars.mds.yandex.net/get-zen_doc/1717677/pub_5db97b8606cc4600aea88600_5db97be3e4f39f00b2f71337/scale_1200&quot;/&gt;
 
@@ -801,13 +867,17 @@ max-height: 500px;
 Сара: У Марджи Маф я обнаружила ритуальную книгу с заклятием возвращения к жизни. Тамже была обнаружена фотография полного класса и татуировки похожие, как у наших жертв. В школе, могу поклясться, я видела дочь Марджи. Шериф, похоже </tw-passagedata><tw-passagedata pid="69" name="Создать амулет" tags="" position="735,1623" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568961745_4cb6e10095896f4.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme9&quot; volume 1 play&gt;&gt;
  *Сара начинает создавать амулет из подручных средств*
-===Прогресс бар создания амулета. По завершению появится сообщение===
+&lt;&lt;timed 1s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+&lt;&lt;next&gt;&gt;
  *Вы успешно создали амулет*
-[[назад|Дочитать полностью]]</tw-passagedata><tw-passagedata pid="70" name="Осмотреть кoмнату" tags="" position="419,1230" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568961366_5584e96da8458aa.mp3&quot;&gt;&gt;
+[[назад|Дочитать полностью]]
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="Осмотреть кoмнату" tags="" position="419,1230" size="100,100">&lt;&lt;cacheaudio &quot;theme9&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568961366_5584e96da8458aa.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme9&quot; volume 1 play&gt;&gt;
-===Появляется прогресс бар осмотра комнаты. После завершения, появляется сообщение===
+&lt;&lt;timed 1s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+&lt;&lt;next&gt;&gt;
  *Вы успешно нашли мешочек с амулетами*
-[[Назад|Зайти в первую комнату]]</tw-passagedata><tw-passagedata pid="71" name="Прoдолжение" tags="" position="2278,1547" size="100,100">&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568962324_390d04a48e68368.mp3&quot;&gt;&gt;
+[[Назад|Зайти в первую комнату]]
+&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="Прoдолжение" tags="" position="2278,1547" size="100,100">&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568962324_390d04a48e68368.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme3&quot; volume 1 play&gt;&gt;
  *В комнате начинают происходить странные вещи: книги падают с полок, свет начинает мигать, неожиданно открыватся окно*
  *Слышан звук детского смеха*
@@ -860,13 +930,14 @@ https://yadi.sk/i/2QQTQ23wNLSm6w
 Отправиться к матери пропавшей девочки|Марджи Маф</tw-passagedata><tw-passagedata pid="75" name="Обыскать" tags="" position="1335,493" size="100,100">&lt;&lt;cacheaudio &quot;theme3&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1568960544_0509cceae472285.mp3&quot;&gt;&gt;
 &lt;&lt;audio &quot;theme3&quot; volume 1 play&gt;&gt;
 &lt;img src=&quot;https://www.adimvi.com/king-include/uploads/thumb_7bbca1329a8557d184874aa3826f1482-404713902.jpg&quot;/&gt;
-&lt;Прогресс бар обыска, после окончания получаем сообщение:&gt;
+
+&lt;&lt;timed 1s&gt;&gt;&lt;div style=&#39;background:#B22222; width:10px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:5px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:15px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:25px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:50px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:30px; height:15px; float: left;&#39;&gt;&lt;/div&gt;&lt;&lt;next&gt;&gt;&lt;div style=&#39;background:#B22222; width:36px; height:15px; float: left;&#39;&gt;&lt;/div&gt;
+&lt;&lt;next&gt;&gt;
  *В процессе обыска, Сара не раз замечала бегающую светло-волосую девочку в старой школе*
-&lt;&lt;timed 3s&gt;&gt;&lt;&lt;audio &quot;theme3&quot; stop&gt;&gt;&lt;&lt;cacheaudio &quot;theme8&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1567417660_fvfyfyfyv.mp3&quot;&gt;&gt;&lt;&lt;audio &quot;theme8&quot; volume 1 play&gt;&gt;
+&lt;&lt;audio &quot;theme3&quot; stop&gt;&gt;&lt;&lt;cacheaudio &quot;theme8&quot; &quot;https://zvukipro.com/uploads/files/2019-09/1567417660_fvfyfyfyv.mp3&quot;&gt;&gt;&lt;&lt;audio &quot;theme8&quot; volume 1 play&gt;&gt;
 &lt;img src=&quot;https://4stor.ru/uploads/posts/2019-05/1558686871_4_7041938e3fc6ed24374aa4387a54c906.jpg&quot;/&gt;
-&lt;&lt;/timed&gt;&gt;
 &lt;&lt;audio &quot;theme3&quot; volume 1 play&gt;&gt;
-&lt;&lt;timed 8s&gt;&gt;
+&lt;&lt;next&gt;&gt;
  *После чщательно осмотра школы, в одном из помещений была обнаружена фотография класса, где учились погибшие ныне жертвы. Также была обнаружена информация о пропавшей без вести девочки - Бриттани Маф, которая училась в томже классе*
 Сара: Надо навестить мать Бриттани, может я смогу найти какую-то зацепку...
 [[Отправиться к матери пропавшей девочки|Марджи Маф]]
@@ -884,8 +955,8 @@ https://yadi.sk/i/2QQTQ23wNLSm6w
 &lt;&lt;next&gt;&gt;&lt;&lt;audio &quot;fleshRush&quot; volume 0.65 time 3 play&gt;&gt;
 &lt;&lt;cacheaudio &quot;crying&quot; &quot;https://zvukipro.com/uploads/files/2017-09/1505121471_kriki-i-mucheniya-lyudey-5.mp3&quot;&gt;&gt;
 &lt;&lt;next&gt;&gt;&lt;&lt;audio &quot;crying&quot; volume 0.65 time 3 play&gt;&gt;
-&lt;&lt;/timed&gt;&gt;
-&lt;&lt;timed 3s&gt;&gt;
+
+&lt;&lt;next&gt;&gt;
 &lt;img src=&quot;http://www.topoboi.com/pic/201312/1920x1200/topoboi.com-35905.jpg&quot;/&gt;
 &lt;&lt;/timed&gt;&gt;
 
